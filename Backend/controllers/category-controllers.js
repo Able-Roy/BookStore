@@ -1,5 +1,5 @@
 const category = require("../models/category");
-const categoryModel = require("../models/category");
+const Category = require("../models/category");
 const httpError = require("../models/http-error");
 
 /*
@@ -7,7 +7,7 @@ const httpError = require("../models/http-error");
 */
 const getCategory = async (req, res, next) => {
   try {
-    categorys = await categoryModel.find();
+    categorys = await Category.find();
   } catch (err) {
     return next(new httpError("unable to find result from databse", 500));
   }
@@ -18,15 +18,20 @@ const getCategory = async (req, res, next) => {
     function to add data to database
 */
 const addCategory = async (req, res, next) => {
+  
   //extracting request to variables
-  name = req.name;
+  name = req.body.name;
+  console.log('test' + name);
   try {
+
+    //updated sortOrder
     sortOrder = (await getMaxSortOrder()) + 1;
 
     //query to add category
-    addedcategory = new categoryModel({name, sortOrder});
+    addedcategory = new Category({name, sortOrder});
     await addedcategory.save();
     res.json(sortOrder);
+
   } catch (err) {
       console.log(err);
     return next(new httpError("unable to add category", 500));
@@ -38,18 +43,19 @@ const addCategory = async (req, res, next) => {
 */
 const getMaxSortOrder = async () => {
   try {
+    //find max sort order from mongoDB
     maxSortOrder = await categoryModel
       .find({})
       .select("sortOrder -_id")
       .sort("-sortOrder")
       .limit(1)
       .exec();
-    console.log(maxSortOrder[0].sortOrder);
   } catch (err) {
     throw new httpError("error getting max sort order");
   }
-
+  //return maxSortOrder
   return maxSortOrder[0].sortOrder;
 };
+
 exports.getCategory = getCategory;
 exports.addCategory = addCategory;
