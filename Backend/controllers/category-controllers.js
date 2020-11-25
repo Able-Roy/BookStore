@@ -1,4 +1,5 @@
-const category = require("../models/category");
+const mongoose = require('mongoose');
+
 const Category = require("../models/category");
 const httpError = require("../models/http-error");
 
@@ -21,19 +22,16 @@ const addCategory = async (req, res, next) => {
   
   //extracting request to variables
   name = req.body.name;
-  console.log('test' + name);
   try {
-
     //updated sortOrder
-    sortOrder = (await getMaxSortOrder()) + 1;
-
+    sortOrder = await getMaxSortOrder() + 1;
+    
     //query to add category
     addedcategory = new Category({name, sortOrder});
     await addedcategory.save();
-    res.json(sortOrder);
-
+    res.status(201).json({id: addedcategory._id, message: 'Resource Created Successfully'});
   } catch (err) {
-      console.log(err);
+    console.log(err);
     return next(new httpError("unable to add category", 500));
   }
 };
@@ -44,18 +42,43 @@ const addCategory = async (req, res, next) => {
 const getMaxSortOrder = async () => {
   try {
     //find max sort order from mongoDB
-    maxSortOrder = await categoryModel
+    maxSortOrder = await Category
       .find({})
       .select("sortOrder -_id")
       .sort("-sortOrder")
       .limit(1)
       .exec();
   } catch (err) {
+    console.log(err);
     throw new httpError("error getting max sort order");
   }
   //return maxSortOrder
   return maxSortOrder[0].sortOrder;
 };
 
+/*
+  function to update Category
+*/
+const updateCategory = async(req, res, next) => {
+ let {categoryId, name} = req.body;
+
+ categoryId = mongoose.Types.ObjectId(categoryId)
+ console.log();
+
+ try{
+  const category = await Category.findById(categoryId);
+  console.log(category);
+  category.name = name;
+  const updatedCategory = await category.save();
+  console.log(updatedCategory);categoryId
+ }
+ catch(err){
+   console.log(err);
+   return next(new HttpError('unable to update the record', 500));
+ }
+ 
+}
+
 exports.getCategory = getCategory;
 exports.addCategory = addCategory;
+exports.updateCategory = updateCategory;
