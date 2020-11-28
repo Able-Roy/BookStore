@@ -3,18 +3,19 @@ const category = require("../models/category");
 
 const Category = require("../models/category");
 const HttpError = require("../models/http-error");
-mongoose.set('debug', true);
+mongoose.set("debug", true);
 
 /*
     fetch categorys from database and send it as a json response.
 */
 const getCategory = async (req, res, next) => {
+  let categories;
   try {
-    categorys = await Category.find();
+    categories = await Category.find();
   } catch (err) {
     return next(new HttpError("unable to find result from databse", 500));
   }
-  res.json(categorys);
+  res.json(categories);
 };
 
 /*
@@ -28,14 +29,12 @@ const addCategory = async (req, res, next) => {
     sortOrder = (await getMaxSortOrder()) + 1;
 
     //query to add category
-    addedcategory = new Category({ name, sortOrder });
-    await addedcategory.save();
-    res
-      .status(201)
-      .json({
-        id: addedcategory._id,
-        message: "Resource Created Successfully",
-      });
+    addedCategory = new Category({ name, sortOrder });
+    await addedCategory.save();
+    res.status(201).json({
+      id: addedCategory._id,
+      message: "Resource Created Successfully",
+    });
   } catch (err) {
     console.log(err);
     return next(new HttpError("unable to add category", 500));
@@ -66,26 +65,23 @@ const getMaxSortOrder = async () => {
 */
 const updateCategory = async (req, res, next) => {
   let { categoryId, name } = req.body;
-
-  //categoryId = mongoose.Types.ObjectId(categoryId)
-  console.log(categoryId);
-
+  let category;
+  
   try {
-    const category = await Category.findById(categoryId);
+    category = await Category.findById(categoryId);
   } catch (err) {
     console.log(err);
     return next(
       new HttpError("unable to find the record with the spcified id", 500)
     );
   }
+  console.log(category);
   try {
     //if category found with given id
     if (category) {
-      console.log(category);
       category.name = name;
-      console.log(category);
       await category.save();
-      console.log(updatedCategory);
+      res.status(200).json({message: "Category Updated Successfully"})
     }
     //return error message record not found.
     else {
