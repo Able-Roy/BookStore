@@ -3,7 +3,6 @@ const category = require("../models/category");
 
 const Category = require("../models/category");
 const HttpError = require("../models/http-error");
-mongoose.set("debug", true);
 
 /*
     fetch categorys from database and send it as a json response.
@@ -11,7 +10,7 @@ mongoose.set("debug", true);
 const getCategory = async (req, res, next) => {
   let categories;
   try {
-    categories = await Category.find();
+    categories = await Category.find({ active: 'Y' });
   } catch (err) {
     return next(new HttpError("unable to find result from databse", 500));
   }
@@ -45,16 +44,34 @@ const addCategory = async (req, res, next) => {
     function to find the max sort order
 */
 const getMaxSortOrder = async () => {
+  let sortOrder;
+
   try {
-    //find max sort order from mongoDB
-    maxSortOrder = await Category.find({})
-      .select("sortOrder -_id")
-      .sort("-sortOrder")
-      .limit(1)
-      .exec();
-  } catch (err) {
+   const recordCount = await Model.countDocuments(); 
+  }
+  catch (err) {
     console.log(err);
-    throw new HttpError("error getting max sort order");
+    throw new HttpError('error connecting mongodb', 500);
+  }
+
+  if (recordCount) {
+   
+    try {
+      //find max sort order from mongoDB
+      maxSortOrder = await Category.find({})
+        .select("sortOrder -_id")
+        .sort("-sortOrder")
+        .limit(1)
+        .exec();
+      
+      sortOrder = maxSortOrder[0].sortOrder;
+    } catch (err) {
+      console.log(err);
+      throw new HttpError("error getting max sort order");
+    }
+  }
+  else {
+    
   }
   //return maxSortOrder
   return maxSortOrder[0].sortOrder;
@@ -66,7 +83,7 @@ const getMaxSortOrder = async () => {
 const updateCategory = async (req, res, next) => {
   let { categoryId, name } = req.body;
   let category;
-  
+
   try {
     category = await Category.findById(categoryId);
   } catch (err) {
