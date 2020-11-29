@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
-const schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-categorySchema = new schema(
+const categorySchema = new Schema(
   {
     name: { type: String, required: true },
     sortOrder: { type: Number, require: true },
-    active: { type: String, default: "Y" },
-    endeffdt: { type: Date, default: null },
+    active: { type: String, default: 'Y' },
+    deleted: { type: String, default: 'N' },
   },
-  { timestamps: true }
+  { timestamps: true },
+  { retainKeyOrder: true },
 );
 
 module.exports = mongoose.model('Category', categorySchema);
