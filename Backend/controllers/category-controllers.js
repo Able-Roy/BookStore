@@ -10,12 +10,7 @@ const getCategory = async (req, res, next) => {
   let jsonResponse;
   try {
     categories = await Category.find({
-      $or: [
-        { active: 'Y' },
-        { endeffdt: null },
-        { endeffdt: { $gt: Date.now() } },
-        { endeffdt: Date.now() },
-      ],
+      $and: [{ active: 'Y' }, { deleted: 'N' }],
     });
   } catch (err) {
     return next(new HttpError('unable to find result from database', 500));
@@ -28,7 +23,6 @@ const getCategory = async (req, res, next) => {
     jsonResponse = categories;
   }
   res.status(200).json(jsonResponse);
-  return next();
 };
 
 /*
@@ -92,7 +86,6 @@ const addCategory = async (req, res, next) => {
     console.log(err);
     return next(new HttpError('unable to add category', 500));
   }
-  return next();
 };
 
 /*
@@ -126,7 +119,6 @@ const updateCategory = async (req, res, next) => {
     console.log(err);
     return next(new HttpError('unable to update the record', 500));
   }
-  return next();
 };
 
 /*
@@ -142,9 +134,10 @@ const deleteCategory = async (req, res, next) => {
   } catch (err) {
     return next(new HttpError('unable to delete record', 500));
   }
-
+  // if category was found soft delete it by setting the flag, and attaching the date
   if (category != null) {
-    category.endeffdt = Date.now();
+    category.deleted = 'Y';
+    category.deletedat = Date.now();
     try {
       category.save();
     } catch (err) {
@@ -155,7 +148,6 @@ const deleteCategory = async (req, res, next) => {
     return next(new HttpError('invalid id passed', 400));
   }
   res.status(200).json({ message: 'record Deleted Successfully' });
-  return next();
 };
 
 exports.getCategory = getCategory;

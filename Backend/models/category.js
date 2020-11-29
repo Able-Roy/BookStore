@@ -8,6 +8,7 @@ const categorySchema = new Schema(
     sortOrder: { type: Number, require: true },
     active: { type: String, default: 'Y' },
     deleted: { type: String, default: 'N' },
+    deletedat: {type: String, default: null}
   },
   { timestamps: true },
   { retainKeyOrder: true },
