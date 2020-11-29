@@ -6,6 +6,7 @@ require('dotenv').config();
 mongoose.set('debug', true);
 
 const categoryRoute = require('./routes/category-routes');
+const bookRoute = require('./Routes/book-routes');
 
 const app = express();
 
@@ -24,7 +25,10 @@ app.use((req, res, next) => {
 });
 
 // category routes
-app.use('/api', categoryRoute);
+app.use('/api/categories', categoryRoute);
+
+//Books routes
+app.use("/api/books", bookRoute);
 
 // default route of 404
 app.use('/', (req, res) => {
