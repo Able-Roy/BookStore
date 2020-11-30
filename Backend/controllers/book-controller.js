@@ -1,5 +1,6 @@
-const Book = require('../models/Book');
-const HttpError = require('../models/http-error');
+const mongoose = require("mongoose");
+const Book = require("../models/Book");
+const HttpError = require("../models/http-error");
 
 const getMaxSortOrder = async () => {
   let sortOrder;
@@ -8,10 +9,10 @@ const getMaxSortOrder = async () => {
   // fetch the documents counts
   try {
     recordCount = await Book.countDocuments();
-  }
-  catch (err) {
+    console.log("recordCount is ", recordCount);
+  } catch (err) {
     console.log(err);
-    throw new HttpError('error connecting mongodb', 500);
+    throw new HttpError("error connecting mongodb", 500);
   }
 
   // if the records not found. Then there is no records. return sort order 0
@@ -19,22 +20,20 @@ const getMaxSortOrder = async () => {
     try {
       // find max sort order from mongoDB
       const maxSortOrder = await Book.find({})
-        .select('sortorder -_id')
-        .sort('-sortorder')
+        .select("sortorder -_id")
+        .sort("-sortorder")
         .limit(1)
         .exec();
 
-      sortOrder = maxSortOrder[0].sortOrder;
-    }
-    catch (err) {
+      sortOrder = maxSortOrder[0].sortorder;
+    } catch (err) {
       console.log(err);
-      throw new HttpError('error getting max sort order');
+      throw new HttpError("error getting max sort order");
     }
-  }
-  else {
+  } else {
     sortOrder = 0;
   }
-
+  console.log("sort order before return is ", sortOrder);
   // return maxSortOrder
   return sortOrder;
 };
@@ -43,7 +42,7 @@ const getMaxSortOrder = async () => {
     function to add Book
 */
 const addBook = async (req, res, next) => {
-  const {
+  let {
     name,
     categoryId,
     author,
@@ -58,10 +57,12 @@ const addBook = async (req, res, next) => {
 
   // updated sortOrder
   let sortOrder = (await getMaxSortOrder()) + 1;
+  console.log("sort order is ", sortOrder);
+  categoryId = mongoose.Types.ObjectId(categoryId);
 
   newBook = new Book({
     name,
-    categoryId,
+    categoryid: categoryId,
     author,
     isbn,
     edition,
@@ -69,15 +70,51 @@ const addBook = async (req, res, next) => {
     binding,
     image,
     details,
+    sortorder: sortOrder,
   });
   try {
     await newBook.save();
   } catch (err) {
     console.log(err);
     return next(
-      new HttpError("Unable To Create User Please Try After Some Time", 500)
+      new HttpError("Unable To Add Book Please Try After Some Time", 500)
     );
+  }
+  res
+    .status(201)
+    .json({ message: "Record Added Successfully", id: newBook._id });
+};
+
+/*
+  function to get books details
+*/
+const getbooks = async (req, res, next) => {
+  const { categoryId } = req.body;
+  let books;
+
+  try {
+    //find books
+    books = await Book.find({
+      $and: [{ active: "Y" }, { deleted: "N" }],
+    });
+  } catch (er) {
+    console.log(err);
+    return next(
+      new HttpError(
+        "unable to fetch data from server, please try agiane after some time",
+        500
+      )
+    );
+  }
+
+  //if books found then send response
+  if(books != null){
+    res.json(books);
+  }
+  else{
+    res.json({message: 'No Records Found'});
   }
 };
 
 exports.addBook = addBook;
+exports.getbooks = getbooks;

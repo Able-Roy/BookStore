@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const Category = require('./category');
+const Category = require("./category");
 
 const BookSchema = new Schema(
   {
     name: {
       type: String,
       required: true,
+      default: null,
     },
     categoryid: {
       type: mongoose.Types.ObjectId,
@@ -18,23 +19,26 @@ const BookSchema = new Schema(
     author: {
       type: String,
       required: true,
+      default: null,
     },
     isbn: {
       type: String,
       required: true,
+      default: null,
     },
     edition: {
       type: String,
       required: true,
+      default: null,
     },
-    language: { type: String, required: true },
-    binding: { type: String, required: true },
-    image: { type: String, required: true },
-    details: { type: String, required: true },
-    active: { type: String, required: true },
-    sortorder: { type: Number, required: true },
-    deleted: { type: Number, required: true },
-    deletedat: { type: String, default: null },
+    language: { type: String, required: true, default: null },
+    binding: { type: String, required: true, default: null },
+    image: { type: String, required: true, default: null },
+    details: { type: String, required: true, default: null },
+    active: { type: String, required: true, default: 'Y' },
+    sortorder: { type: Number, required: true, default: null },
+    deleted: { type: String, required: true, default: 'N' },
+    deletedat: { type: String, default: null, default: null },
   },
   { timestamps: true }
 );
