@@ -88,7 +88,7 @@ const addBook = async (req, res, next) => {
 /*
   function to get books details
 */
-const getbooks = async (req, res, next) => {
+const getBooks = async (req, res, next) => {
   const { categoryId } = req.body;
   let books;
 
@@ -96,7 +96,7 @@ const getbooks = async (req, res, next) => {
     //find books
     books = await Book.find({
       $and: [{ active: "Y" }, { deleted: "N" }],
-    });
+    }).populate('categoryId').exec();
   } catch (er) {
     console.log(err);
     return next(
@@ -159,6 +159,6 @@ const deleteBook = async(req, res, next) => {
 }
 
 exports.addBook = addBook;
-exports.getbooks = getbooks;
+exports.getBooks = getBooks;
 exports.updateBook = updateBook;
 exports.deleteBook = deleteBook;
