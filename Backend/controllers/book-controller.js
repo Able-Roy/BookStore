@@ -20,12 +20,12 @@ const getMaxSortOrder = async () => {
     try {
       // find max sort order from mongoDB
       const maxSortOrder = await Book.find({})
-        .select("sortorder -_id")
-        .sort("-sortorder")
+        .select("sortOrder -_id")
+        .sort("-sortOrder")
         .limit(1)
         .exec();
 
-      sortOrder = maxSortOrder[0].sortorder;
+      sortOrder = maxSortOrder[0].sortOrder;
     } catch (err) {
       console.log(err);
       throw new HttpError("error getting max sort order");
@@ -62,7 +62,7 @@ const addBook = async (req, res, next) => {
 
   newBook = new Book({
     name,
-    categoryid: categoryId,
+    categoryId,
     author,
     isbn,
     edition,
@@ -70,7 +70,7 @@ const addBook = async (req, res, next) => {
     binding,
     image,
     details,
-    sortorder: sortOrder,
+    sortOrder,
   });
   try {
     await newBook.save();
@@ -116,5 +116,49 @@ const getbooks = async (req, res, next) => {
   }
 };
 
+/*
+  function to update book
+*/
+const updateBook = async(req, res, next) => {
+ const {bookId} = req.body;
+ const inputValues = Object.keys(req.body);
+ const update = {};
+
+ //creating dynamic query
+ for(let i=0; i< inputValues.length; i++){
+   update[inputValues[i]] = Object.values(req.body)[i];
+ }
+
+ //update query for book
+ try{
+   await Book.updateOne({'_id': bookId}, {$set: update});
+ }
+ catch(err){
+   console.log(err);
+   return next(new HttpError('Unable To Update Book', 500));
+ }
+ res.status(201).json({message: 'Record Updated Successfully'});
+}
+
+/*
+  function to soft delete book record
+*/
+const deleteBook = async(req, res, next) => {
+  const {bookId} = req.body;
+  const updates = {};
+  updates.deleted = "Y";
+  updates.deletedAt = Date.now;
+  try{
+    await Book.updateOne({_id: bookId}, {$set: updates});
+  }
+  catch(err){
+    console.log(err);
+    return next(new HttpError('Unable To Delete Record', 500));
+  }
+  res.status(200).json({message: 'Record Deleted Successfully'});
+}
+
 exports.addBook = addBook;
 exports.getbooks = getbooks;
+exports.updateBook = updateBook;
+exports.deleteBook = deleteBook;

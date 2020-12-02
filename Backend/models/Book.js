@@ -11,7 +11,7 @@ const BookSchema = new Schema(
       required: true,
       default: null,
     },
-    categoryid: {
+    categoryId: {
       type: mongoose.Types.ObjectId,
       required: true,
       ref: Category,
@@ -36,9 +36,9 @@ const BookSchema = new Schema(
     image: { type: String, required: true, default: null },
     details: { type: String, required: true, default: null },
     active: { type: String, required: true, default: 'Y' },
-    sortorder: { type: Number, required: true, default: null },
+    sortOrder: { type: Number, required: true, default: null },
     deleted: { type: String, required: true, default: 'N' },
-    deletedat: { type: String, default: null, default: null },
+    deletedAt: { type: String, default: null, default: null },
   },
   { timestamps: true }
 );
