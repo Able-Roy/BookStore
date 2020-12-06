@@ -1,0 +1,27 @@
+.nav-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: unset;
+}
+
+.nav-links li{
+    list-style: none;
+    padding: 10px;   
+    padding-top: none;
+
+}
+
+.nav-links li:hover{
+    opacity: .9;
+   background: rgba(22, 1, 1, 0.05); 
+   color: rgba(255,0,0, .5);
+}
+.nav-links li a{
+    text-decoration: none;
+     color:#333;
+     font-weight: bold;
+}
+.nav-links li a:hover{
+    color: rgba(255,0,0, .5);
+}
