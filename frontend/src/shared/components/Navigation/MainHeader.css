@@ -9,7 +9,7 @@
     width: 10vw;
     padding: 1vw;
 }
-.mobile, .wholesale, .library{
+.mobile, .wholesale, .library, .search-section, .cart{
      display: flex;
      justify-content: center;
       align-items: center;
@@ -31,4 +31,15 @@
 .library img{
      height: 7vh;
      padding: 1vw;
+}
+.cart img{
+     height: 10vh;
+     padding: 1vw;
+}
+.search-section{
+     margin-right: auto;
+}
+
+.main-header .login{
+     margin-right: 5vw;
 }
