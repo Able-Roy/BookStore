@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink} from 'react-router-dom';
-
+import Select from 'react-select';
 
 import "./MainHeader.css";
 import logo from "../../../images/logo.png";
@@ -9,6 +9,11 @@ import wholesaleIcon from "../../../images/wholesale.ico";
 import libraryIcon from "../../../images/library.ico";
 import cartIcon from "../../../images/cart.ico";
 const MainHeader = () => {
+  const options = [
+    { value: 'All', label: 'All' },
+    { value: 'New', label: 'New' },
+    { value: 'Old', label: 'Old' }
+  ]
   return (
     <header className="main-header">
       <img src={logo} className="logo" alt="logo" />
@@ -25,12 +30,8 @@ const MainHeader = () => {
         <span>Smart library</span>
       </div>
       <div className="search-section">
-        <select name="selSearch">
-          <option value="All">All</option>
-          <option value="New">New</option>
-          <option value="Old">Old</option>
-        </select>
-        <input type="text" placeholder="Enter Search Query Here."/>
+        <Select options={options} className="sel-search" defaultValue={{ value: 'All', label: 'All' }}/>
+        <input type="text" class="txt-search" placeholder="Enter Search Query Here."/>
         <button>Search</button>
       </div>
       <div className="cart">

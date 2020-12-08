@@ -38,8 +38,17 @@
 }
 .search-section{
      margin-right: auto;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
 }
-
+.search-section .txt-search{
+     height:6vh;
+}
 .main-header .login{
      margin-right: 5vw;
+}
+.sel-search{
+    width: 5vw;
+    height:5vh;
 }
