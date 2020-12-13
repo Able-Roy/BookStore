@@ -1,54 +1,82 @@
-.main-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px ridge rgba(1, 0, 0, .2);
-    margin: none;
+.main-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px ridge rgba(1, 0, 0, 0.2);
+  margin: none;
 }
-.logo{
-    width: 10vw;
-    padding: 1vw;
+.logo {
+  width: 10vw;
+  padding: 1vw;
 }
-.mobile, .wholesale, .library, .search-section, .cart{
-     display: flex;
-     justify-content: center;
-      align-items: center;
-     padding: 1vw;
-     font-size: small;
-     opacity: 0.5;
+.mobile,
+.wholesale,
+.library,
+.search-section,
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vw;
+  font-size: small;
+  opacity: 0.5;
 }
-.library{
-     margin-right: auto;
+.library {
+  margin-right: auto;
 }
-.mobile img{
-     height: 7vh;
-     padding: 1vw;
+.mobile img {
+  height: 7vh;
+  padding: 1vw;
 }
-.wholesale img{
-      height: 7vh;
-     padding: 1vw;
+.wholesale img {
+  height: 7vh;
+  padding: 1vw;
 }
-.library img{
-     height: 7vh;
-     padding: 1vw;
+.library img {
+  height: 7vh;
+  padding: 1vw;
 }
-.cart img{
-     height: 10vh;
-     padding: 1vw;
+.cart img {
+  height: 10vh;
+  padding: 1vw;
 }
-.search-section{
-     margin-right: auto;
-     display: flex;
-     justify-content: flex-start;
-     align-items: center;
+.search-section {
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 1;
 }
-.search-section .txt-search{
-     height:6vh;
+.sel-search {
+  width: 50px;
+  height: 30px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background: #cc3304;
+  outline: none;
+  color: #ffffff;
 }
-.main-header .login{
-     margin-right: 5vw;
+.txt-search {
+  width: 170px;
+  height: 30px;
+  outline: none;
+  opacity: .5;
+  border : 1px solid #dbdbdb; 
 }
-.sel-search{
-    width: 5vw;
-    height:5vh;
+.search-section button {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  outline: none;
+  position: relative;
+  top: 0px;
+  right: 12px;
+  border: none;
+  background: #cc3304;
+  color: #ffffff;
+}
+.main-header .login {
+  margin-right: 5vw;
 }
