@@ -51,33 +51,34 @@
 }
 .sel-search {
   width: 50px;
-  height: 30px;
+  height: 40px;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  background: #cc3304;
+  background: rgba(1, 0, 0, .5) ;
   outline: none;
   color: #ffffff;
 }
 .txt-search {
   width: 170px;
-  height: 30px;
+  height: 40px;
   outline: none;
   opacity: .5;
-  border : 1px solid #dbdbdb; 
-  box-shadow: 1px 1px;
+  border : 1px solid #66000000 ; 
+  box-shadow:20px 20px 10px grey; 
 }
 .search-section button {
-  width: 100px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
   border-radius: 20px;
   outline: none;
   position: relative;
   top: 0px;
-  right: 12px;
+  right: 15px;
   border: none;
-  background: #cc3304;
+  background:  rgba(1, 0, 0, .5);
   color: #ffffff;
 }
 .main-header .login {
   margin-right: 5vw;
+  text-decoration: none;
 }
