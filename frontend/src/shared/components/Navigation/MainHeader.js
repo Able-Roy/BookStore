@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 import "./MainHeader.css";
 import logo from "../../../images/logo.png";
@@ -10,12 +10,17 @@ import cartIcon from "../../../images/cart.ico";
 
 const MainHeader = () => {
   const options = [
-    { value: 'All', label: 'All' },
-    { value: 'New', label: 'New' },
-    { value: 'Old', label: 'Old' }
+    { value: "All", label: "All" },
+    { value: "New", label: "New" },
+    { value: "Old", label: "Old" },
   ];
   return (
     <header className="main-header">
+      <div className="drawer-button">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <img src={logo} className="logo" alt="logo" />
       <div className="mobile">
         <img src={phoneIcon} alt="phone" />

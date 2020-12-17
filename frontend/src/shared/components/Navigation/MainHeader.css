@@ -54,7 +54,7 @@
   height: 40px;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  background: rgba(1, 0, 0, .5) ;
+  background: rgba(1, 0, 0, 0.5);
   outline: none;
   color: #ffffff;
 }
@@ -62,9 +62,9 @@
   width: 170px;
   height: 40px;
   outline: none;
-  opacity: .5;
-  border : 1px solid #66000000 ; 
-  box-shadow:20px 20px 10px grey; 
+  opacity: 0.5;
+  border: 1px solid #66000000;
+  box-shadow: 20px 20px 10px grey;
 }
 .search-section button {
   width: 80px;
@@ -75,10 +75,34 @@
   top: 0px;
   right: 15px;
   border: none;
-  background:  rgba(1, 0, 0, .5);
+  background: rgba(1, 0, 0, 0.5);
   color: #ffffff;
 }
 .main-header .login {
   margin-right: 5vw;
   text-decoration: none;
+}
+.drawer-button div {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+.drawer-button {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .drawer-button {
+    display: block;
+  }
+  .mobile,
+  .wholesale,
+  .library,
+  .search-section,
+  .cart {
+    display: none;
+  }
+  .logo{
+    margin-right: auto;
+  }
 }
