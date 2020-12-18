@@ -83,18 +83,24 @@
   text-decoration: none;
 }
 .drawer-button div {
-  width: 35px;
-  height: 5px;
+width: 35px;
+height: 5px;
   background-color: black;
   margin: 6px 0;
 }
 .drawer-button {
   display: none;
 }
-@media (max-width: 1000px) {
+@media (max-width: 450px) {
   .drawer-button {
     display: block;
   }
+  .drawer-button div {
+    width: 15px;
+    height: 3px;
+      background-color: black;
+      margin: 2px 3px;
+    }
   .mobile,
   .wholesale,
   .library,
@@ -104,5 +110,6 @@
   }
   .logo{
     margin-right: auto;
+    width: 20vw;
   }
 }
