@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import "./NavLinks.css";
 
-const NavLinks = () => {
+const NavLinks = (props) => {
   return (
-    <ul className="nav-links">
+    <ul className={props.className}>
       <li>
         <NavLink to="/">Categories</NavLink>{" "}
       </li>
