@@ -4,12 +4,14 @@ import Home from './pages/home';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import NavLinks from './shared/components/Navigation/NavLinks';
 import SideDrawer from './shared/components/Navigation/SideDrawer';
+import BackDrop from './shared/components/UIElements/BackDrop/BackDrop';
 
 const App = () => {
   return (
     <React.Fragment>
       <Router>
-        <MainNavigation/>
+        <MainNavigation />
+        <BackDrop/>
         <SideDrawer>
           <NavLinks/>
         </SideDrawer>

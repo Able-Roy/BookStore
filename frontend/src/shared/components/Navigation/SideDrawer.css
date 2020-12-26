@@ -16,9 +16,9 @@
   padding-right: 15px;
 }
 .side-drawer img{
-  position: relative;
   margin: 10px;
-  width: 100%;
+  width: 210px;
+  height: 47px;
   padding-bottom: 10px;
   border-bottom: 1px solid gray;
 }
@@ -32,6 +32,7 @@
 .side-drawer li{
   list-style: none;
   text-decoration: none;
+  padding: 10px;
 }
 .side-drawer li a{
   text-decoration: none;
