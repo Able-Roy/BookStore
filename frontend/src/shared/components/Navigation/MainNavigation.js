@@ -6,7 +6,7 @@ const MainNavigation = () => {
   return (
     <React.Fragment>
       <MainHeader/>
-      <NavLinks />
+      <NavLinks className="nav-links"/>
     </React.Fragment>
   );
 };
