@@ -8,7 +8,7 @@ import wholesaleIcon from "../../../images/wholesale.ico";
 import libraryIcon from "../../../images/library.ico";
 import cartIcon from "../../../images/cart.ico";
 
-const MainHeader = () => {
+const MainHeader = (props) => {
   const options = [
     { value: "All", label: "All" },
     { value: "New", label: "New" },
@@ -16,7 +16,7 @@ const MainHeader = () => {
   ];
   return (
     <header className="main-header">
-      <div className="drawer-button">
+      <div className="drawer-button" onClick={props.openDrawer}>
         <div></div>
         <div></div>
         <div></div>
