@@ -43,6 +43,11 @@ const CATEGORIES = [
     name: 'category8',
     imageUrl: "https://source.unsplash.com/random",
   },
+  {
+    categoryId: 9,
+    name: 'category9',
+    imageUrl: "https://source.unsplash.com/random",
+  },
 ];
 
 const CategoryLanding = () => {
