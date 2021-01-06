@@ -56,12 +56,25 @@ const CategoryLanding = () => {
 
   //api call to fetch categories
   useEffect(() => {
-    fetch("http://localhost:5000/api/categorys", {
+    fetch("http://localhost:5000/api/categories/", {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
-      .then((res) => console.log(res.json()))
+      .then((res) => {
+        if (res.ok) {
+         return res.json();
+          console.log(res);
+        } else {
+          throw new Error("unable to fetch data");
+        }
+      })
+      .then((data) => console.log(data))
       .catch((err) => console.log(err));
   }, []);
 
