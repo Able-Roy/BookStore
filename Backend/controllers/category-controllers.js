@@ -68,14 +68,14 @@ const getMaxSortOrder = async () => {
 */
 const addCategory = async (req, res, next) => {
   // extracting request to variables
-  const { name } = req.body;
+  const { name, imageUrl } = req.body;
   let sortOrder;
   try {
     // updated sortOrder
     sortOrder = (await getMaxSortOrder()) + 1;
 
     // query to add category
-    const addedCategory = new Category({ name, sortOrder });
+    const addedCategory = new Category({ name, imageUrl, sortOrder });
     await addedCategory.save();
     res.status(201).json({
       // eslint-disable-next-line no-underscore-dangle
@@ -92,7 +92,7 @@ const addCategory = async (req, res, next) => {
   function to update Category
 */
 const updateCategory = async (req, res, next) => {
-  const { categoryId, name } = req.body;
+  const { categoryId, name, imageUrl } = req.body;
   let category;
 
   try {
@@ -108,6 +108,7 @@ const updateCategory = async (req, res, next) => {
     // if category found with given id
     if (category) {
       category.name = name;
+      category.imageUrl = imageUrl;
       await category.save();
       res.status(200).json({ message: 'Category Updated Successfully' });
     } else {
