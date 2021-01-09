@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.category-wrapper a{
+    text-decoration: none;
+}
+
 .category-container{
     display: flex;
     max-width: 400px;

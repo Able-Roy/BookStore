@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
+
 
 import Loader from '../shared/components/UIElements/Loader/Loader';
 
@@ -40,15 +42,16 @@ const CategoryLanding = () => {
 
   return (
     <div className="category-wrapper">
-      <Loader/>
-      {/* {isLoading?<Loader/>:categories.map((category) => {
+      {isLoading?<Loader/>:categories.map((category) => {
         return (
-          <div className="category-container" key={category._id}>
-            <h1>{category.name}</h1>
-            <img src={category.imageUrl} alt={category.name} />
-          </div>
+          <Link to={`/books/${category.name}`}>
+            <div className="category-container" key={category._id}>
+              <h1>{category.name}</h1>
+              <img src={category.imageUrl} alt={category.name} />
+            </div>
+          </Link>
         );
-      })} */}
+      })}
     </div>
   );
 };
