@@ -1,5 +1,7 @@
 import React from "react";
 
+import './ProductList.css';
+const CURRENCY_CODE = '₹';
 const BOOkS = [
   {
     name: "book1",
@@ -62,10 +64,11 @@ const ProductList = () => {
       {BOOkS.map((book) => {
         return (
           <div className="product-list-item">
-            <h1>{book.name}</h1>
+            <span className="list-item-name">{book.name}</span>
             <img src={book.imageUrl} alt={book.name}></img>
-            <h3>{book.author}</h3>
-            <span>{book.price}</span>
+            <span className="list-item-author">{book.author}</span>
+            <span className="list-item-price">{`${book.price} ${CURRENCY_CODE}`}</span>
+            <button>Add To Cart</button>
           </div>
         );
       })}
