@@ -1,23 +1,31 @@
-import React from 'react';
+import React from "react";
 
-const FILTERS = {
-    c1:['s1', 's2', 's3'],
-    c2:['s1', 's2', 's3'],
-    c3:['s1', 's2', 's3'],
-    c4:['s1', 's2', 's3'],
+const PRODUCT_FILTER = {
+  p1: ["filter1", "filter2", "filter3"],
+  p2: ["filter1", "filter2", "filter3"],
+  p3: ["filter1", "filter2", "filter3"],
+  p4: ["filter1", "filter2", "filter3"],
+  p5: ["filter1", "filter2", "filter3"],
 };
 
-//product list was added
-const ProductFilter () =>{
-    let filterList;
-    for(category in FILTERS){
-        filterList = 
+const getFilters = (filters) => {
+    let content = [];
+  for (let filter in filters) {
+      console.log(filter);
+    for (let item in filters[filter]) {
+        console.log(filters[filter][item]);
+        
+        content.push(
+          <React.Fragment>
+            <div className="header">{}</div>
+          </React.Fragment>
+        );
     }
-    return(<div className="filter-wrapper">
-        {
-            
-        }
-        </div>);
-}
+  }
+};
+//product list was added
+const ProductFilter = () => {
+  return <div className="filter-wrapper">{getFilters(PRODUCT_FILTER)}</div>;
+};
 
 export default ProductFilter;
