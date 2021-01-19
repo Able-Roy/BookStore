@@ -11,17 +11,18 @@ const PRODUCT_FILTER = {
 const getFilters = (filters) => {
     let content = [];
   for (let filter in filters) {
-      console.log(filter);
+    content.push(
+      <div className="header">{filter}</div>
+  );
     for (let item in filters[filter]) {
         console.log(filters[filter][item]);
-        
         content.push(
-          <React.Fragment>
-            <div className="header">{}</div>
-          </React.Fragment>
-        );
+          <input type="checkbox" value={filters[filter][item]}/>
+      );
     }
   }
+
+  return content;
 };
 //product list was added
 const ProductFilter = () => {
