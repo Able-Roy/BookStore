@@ -1,0 +1,18 @@
+.filter-wrapper{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 600px;
+}
+.filter-wrapper .filter-title{
+    font-weight: bold;
+    text-align: center;
+}
+.filter-wrapper .header{
+    font-weight: bolder;
+    text-align: left;
+}
+.filer-checkbox .filter-name{
+    display: inline-block;
+    width: 50%;
+}
