@@ -1,18 +1,22 @@
-.filter-wrapper{
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-    width: 600px;
+.filter-wrapper {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 600px;
+  box-sizing: border-box;
 }
-.filter-wrapper .filter-title{
-    font-weight: bold;
-    text-align: center;
+.filter-wrapper .filter-title {
+  font-weight: bold;
+  text-align: center;
 }
-.filter-wrapper .header{
-    font-weight: bolder;
-    text-align: left;
+.filter-wrapper .header {
+  font-weight: bolder;
+  text-align: left;
+  border-top : 1px solid black;
+  padding: 10px;
 }
-.filer-checkbox .filter-name{
-    display: inline-block;
-    width: 50%;
+.filer-checkbox,
+.filter-name {
+  display: inline-block;
+  width: 40%;
 }

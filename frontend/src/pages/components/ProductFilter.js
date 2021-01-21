@@ -19,12 +19,13 @@ const getFilters = (filters) => {
     content.push(<div className="header">{filter}</div>);
     for (let item in filters[filter]) {
       console.log(filters[filter][item]);
+      let key = uuid();
       content.push(
         <React.Fragment>
-          <input type="checkbox" className="filer-checkbox" value={filters[filter][item]} key={uuid()} />
-          <div className="filter-name" key={uuid()}>
+          <input type="checkbox" className="filer-checkbox" value={filters[filter][item]} id={key} key={key} />
+          <label for={key} className="filter-name" key={key}>
             {filters[filter][item]}
-          </div>
+          </label>
         </React.Fragment>
       );
     }
