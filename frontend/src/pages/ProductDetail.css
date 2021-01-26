@@ -1,0 +1,30 @@
+.product-detail-wrapper{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+}
+.product-preview, .product-details{
+    width: 50%;
+}
+.product-preview{
+    display: flex;
+}
+.product-thumbnail{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+.product-thumbnail img{
+    max-width: 100px;
+    max-height: 100px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, .8);
+    margin: 10px;
+}
+.product-preview-image{
+    box-sizing: border-box;
+}
+.product-preview-image img{
+    width: 100%;
+}
