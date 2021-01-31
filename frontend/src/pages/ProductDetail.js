@@ -16,13 +16,13 @@ const ProductDetail = (props) => {
         <div className="product-preview-image">
           <img src="https://source.unsplash.com/random" alt="slider image" />
         </div>
-        <div className="action-buttons">
-          <button className="cart">Add To Cart</button>
-          <button className="cart">Buy Now</button>
-        </div>
       </div>
       <div className="product-details">
         <span>Product Name</span>
+      </div>
+      <div className="action-buttons">
+        <button className="action-buttons__cart">Add To Cart</button>
+        <button className="action-buttons__buy">Buy Now</button>
       </div>
     </div>
   );
