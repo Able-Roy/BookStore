@@ -58,3 +58,18 @@
     display: flex;
     justify-content: center;
 }
+.fav-icon{
+    position: relative;
+    top: 140px;
+    right: 696px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.fav-icon svg{
+    align-content: center;
+    margin-left: 20%;
+    margin-top: 20%;
+}
