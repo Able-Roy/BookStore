@@ -25,6 +25,7 @@
 }
 .product-preview-image{
     box-sizing: border-box;
+    position: relative;
 }
 .product-preview-image img{
     width: 570px;
@@ -46,7 +47,7 @@
 }
 .action-buttons__buy{
     margin-left: 10px;
-    width: 245px;
+    width: 280px;
     height: 50px;
     background: #000000;
     color: #ffffff;
@@ -56,20 +57,25 @@
 }
 .product-details{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .fav-icon{
-    position: relative;
-    top: 140px;
-    right: 696px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     border-radius: 50%;
     width: 30px;
     height: 30px;
     border: 1px solid black;
+    z-index: 1;
 }
 
 .fav-icon svg{
     align-content: center;
     margin-left: 20%;
     margin-top: 20%;
+}
+.eX72wL{
+    fill: white;
 }
