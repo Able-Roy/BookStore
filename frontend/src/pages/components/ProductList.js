@@ -6,54 +6,63 @@ import "./ProductList.css";
 const CURRENCY_CODE = "₹";
 const BOOkS = [
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book2",
     name: "book2",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
     price: "150",
   },
   {
+    id: "book1",
     name: "book1",
     imageUrl: "https://source.unsplash.com/random",
     author: "author1",
@@ -67,7 +76,7 @@ const ProductList = () => {
     <div className="product-list">
       {BOOkS.map((book) => {
         return (
-          <Link to={`${location.pathname}/${book.name}`}>
+          <Link to={`${location.pathname}/${book.id}`}>
             <div className="product-list-item">
               <span className="list-item-name">{book.name}</span>
               <img src={book.imageUrl} alt={book.name}></img>

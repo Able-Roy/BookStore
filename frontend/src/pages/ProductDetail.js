@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
+import StarRating from "../shared/components/UIElements/starRating/starRating";
 import "./ProductDetail.css";
 const ProductDetail = (props) => {
+  
+  // Star rating state
+  const [rating, setRating] = useState(3);
+
+  // star rating action commented. we dont want to change the rating, we only want to display the rating here.
+  const handleStarRatingChange = (value) => {
+    //disabled for product data
+    //setRating(value);
+  };
   return (
     <div className="product-detail-wrapper">
       <div className="product-preview">
         <div className="product-thumbnail">
-          <img src="https://source.unsplash.com/random" alt="slider image" />
-          <img src="https://source.unsplash.com/random" alt="slider image" />
-          <img src="https://source.unsplash.com/random" alt="slider image" />
-          <img src="https://source.unsplash.com/random" alt="slider image" />
-          <img src="https://source.unsplash.com/random" alt="slider image" />
-          <img src="https://source.unsplash.com/random" alt="slider image" />
+          <img src="https://source.unsplash.com/random" alt="" />
+          <img src="https://source.unsplash.com/random" alt="" />
+          <img src="https://source.unsplash.com/random" alt="" />
+          <img src="https://source.unsplash.com/random" alt="" />
+          <img src="https://source.unsplash.com/random" alt="" />
+          <img src="https://source.unsplash.com/random" alt="" />
         </div>
         <div className="product-preview-image">
-          <img src="https://source.unsplash.com/random" alt="slider image" />
+          <img src="https://source.unsplash.com/random" alt="" />
           <div className="fav-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,17 +47,48 @@ const ProductDetail = (props) => {
       </div>
       <div className="product-details">
         <span className="product-name">Product Name</span>
-        <span className="product-price">$50</span>
-        <div className>
-          Estimated Delivery Timelines: 4-6 Days in Dubai 5-7 Days in Rest of
-          UAE 9-11 Days in GCC 11-13 Days for International Locations ** All
-          timeframes given exclude Fridays and any applicable public holidays.
-        </div>
         <div className="product-ratings">
-          <div className="product-ratings__rating">5</div>
-          <div className="product-ratings__stars">*****</div>
-          <div className="product-ratings__count">100</div>
-          <div className="product-ratings__unit-sold">500</div>
+          <div className="product-ratings__stars">
+            <StarRating
+              count={5}
+              size={16}
+              value={rating}
+              activeColor={"red"}
+              inactiveColor={"#ddd"}
+              onChange={handleStarRatingChange}
+            />
+          </div>
+          <div className="product-ratings__count">
+            <span>100</span>
+            <span>Rating</span>
+          </div>
+          <div className="product-ratings__unit-sold">
+            {" "}
+            <span>500</span>
+            <span>Sold</span>
+          </div>
+        </div>
+        <span className="product-price">$50</span>
+        <div className="product-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus
+          et malesuada fames ac turpis egestas maecenas. Quis eleifend quam
+          adipiscing vitae proin sagittis nisl. Amet consectetur adipiscing elit
+          duis tristique sollicitudin. Risus quis varius quam quisque id diam
+          vel quam elementum. Sapien eget mi proin sed libero enim sed. Auctor
+          urna nunc id cursus. Eget duis at tellus at urna condimentum mattis.
+          Dictum at tempor commodo ullamcorper a lacus vestibulum. Consequat
+          semper viverra nam libero justo laoreet sit amet. Amet consectetur
+          adipiscing elit duis. Feugiat in fermentum posuere urna nec. Urna
+          cursus eget nunc scelerisque viverra mauris in. Eget nunc lobortis
+          mattis aliquam faucibus purus in. Massa enim nec dui nunc. Arcu ac
+          tortor dignissim convallis aenean et tortor at. Tincidunt arcu non
+          sodales neque sodales ut etiam sit amet. Nec dui nunc mattis enim ut.
+          Feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper
+          morbi. Urna condimentum mattis pellentesque id nibh tortor id. Blandit
+          massa enim nec dui. Urna molestie at elementum eu. Tellus pellentesque
+          eu tincidunt tortor aliquam nulla facilisi cras fermentum. Pretium
+          lectus quam id leo in vitae turpis.
         </div>
       </div>
       <div className="action-buttons">
